@@ -1,0 +1,14 @@
+// export DB_PASSWORD=30570d05e3f14906a996afc0b2de182f
+
+5432;
+
+// proxy: {
+//      "/api/payment": {
+//       target: 'http://localhost:8000', //
+//       changeOrigin: true,
+//       },
+//       "/api": {
+//         target: "http://localhost:8080",
+//         changeOrigin: true,
+//       },
+//     },
