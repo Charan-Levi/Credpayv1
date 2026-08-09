@@ -1,4 +1,4 @@
-FROM python:3.9-slim AS runtime
+FROM python:3.14slim AS runtime
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
