@@ -23,6 +23,7 @@ stages:
     jobs:
       - job: DockerBuildPush
         steps:
+          - checkout: self
           - task: Docker@2
             inputs:
               containerRegistry: $(acrserviceconnection)
