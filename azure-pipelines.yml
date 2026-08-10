@@ -25,9 +25,11 @@ stages:
         displayName: Terraform Apply
         steps:
           - task: TerraformInstaller@1
+            displayName: Terraform Installer
             inputs:
               terraformVersion: 'latest'
           - task: AzureCLI@3
+            displayName: Terraform Apply
             inputs:
               connectionType: 'azureRM'
               azureSubscription: 'ThirdAccount'
@@ -36,6 +38,7 @@ stages:
               inlineScript: |
                 terraform init
                 terraform validate
+                terraform apply --auto-approve
               workingDirectory: 'terraform'
 
 
