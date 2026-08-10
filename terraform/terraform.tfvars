@@ -1,0 +1,14 @@
+location                     = "centralindia"
+address_space                = ["172.16.0.0/16"]
+aks_subnet_prefix            = ["172.16.1.0/24"]
+postgres_subnet_prefix       = ["172.16.2.0/24"]
+node_count                   = 2
+vm_size                      = "Standard_D2ads_v5"
+min_count                    = 2
+max_count                    = 3
+retention_in_days            = 30
+administrator_username       = "postgres"
+postgres_version             = 17
+database_name = "credpay"
+keyvault_name                = "CredKeyVal"
+keyvault_resource_group_name = "CredBackendRG"
