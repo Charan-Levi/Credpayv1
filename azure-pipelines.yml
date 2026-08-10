@@ -34,6 +34,7 @@ stages:
               workingDirectory: 'terraform'
               backendAzureRmUseEntraIdForAuthentication: false
               backendServiceArm: 'ThirdAccount'
+              backendAzureRmOverrideSubscriptionID: '0727575b-5443-43a6-8eda-c48298ba7188'
               backendAzureRmStorageAccountName: 'credstoreacc'
               backendAzureRmContainerName: 'tfstate'
               backendAzureRmKey: 'terraform.tfstate'
