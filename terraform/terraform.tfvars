@@ -1,3 +1,4 @@
+subscription_id = "0727575b-5443-43a6-8eda-c48298ba7188"
 location                     = "centralindia"
 address_space                = ["172.16.0.0/16"]
 aks_subnet_prefix            = ["172.16.1.0/24"]
