@@ -27,17 +27,16 @@ stages:
           - task: TerraformInstaller@1
             inputs:
               terraformVersion: 'latest'
-          - task: TerraformTask@5
+          - task: AzureCLI@3
             inputs:
-              provider: 'azurerm'
-              command: 'init'
+              connectionType: 'azureRM'
+              azureSubscription: 'ThirdAccount'
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                terraform init
+                terraform validate
               workingDirectory: 'terraform'
-              backendAzureRmUseEntraIdForAuthentication: false
-              backendServiceArm: 'ThirdAccount'
-              backendAzureRmOverrideSubscriptionID: '0727575b-5443-43a6-8eda-c48298ba7188'
-              backendAzureRmStorageAccountName: 'credstoreacc'
-              backendAzureRmContainerName: 'tfstate'
-              backendAzureRmKey: 'terraform.tfstate'
 
 
 
