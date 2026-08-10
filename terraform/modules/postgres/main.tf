@@ -20,6 +20,9 @@ resource "azurerm_postgresql_flexible_server" "psql" {
   sku_name                      = "B_Standard_B2s"
   storage_mb                    = 32768
   backup_retention_days         = 30
+  lifecycle {
+    ignore_changes = [zone]
+  }
 }
 
 resource "azurerm_postgresql_flexible_server_database" "psql-database" {
