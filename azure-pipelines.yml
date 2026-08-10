@@ -40,6 +40,28 @@ stages:
                 terraform validate
                 terraform apply --auto-approve
               workingDirectory: 'terraform'
+              
+  - stage: TerraformDestroy
+    displayName: Terraform Destroy
+    jobs:
+      - job: 
+        displayName: Terraform Destroy
+        steps:
+          - task: TerraformInstaller@1
+            displayName: Terraform Installer
+            inputs:
+              terraformVersion: 'latest'
+          - task: AzureCLI@3
+            displayName: Terraform Destroy
+            inputs:
+              connectionType: 'azureRM'
+              azureSubscription: 'ThirdAccount'
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                terraform init
+                terraform destroy --auto-approve
+              workingDirectory: 'terraform'
 
 
 
