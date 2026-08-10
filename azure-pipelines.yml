@@ -18,35 +18,57 @@ variables:
 
 
 stages:
-  - stage: DockerBuildPush
-    displayName: Docker Build And Push
+  - stage: TerraformApply
+    displayName: Terraform Apply
     jobs:
-      - job: DockerBuildPush
+      - job: 
+        displayName: Terraform Apply
         steps:
-          - task: Docker@2
+          - task: TerraformInstaller@1
             inputs:
-              containerRegistry: $(acrserviceconnection)
-              repository: $(frontendrepository)
-              command: 'buildAndPush'
-              Dockerfile: 'frontend-react/Dockerfile'
-              tags: |
-                $(tag)
-                latest
-          - task: Docker@2
+              terraformVersion: 'latest'
+          - task: TerraformTask@5
             inputs:
-              containerRegistry: $(acrserviceconnection)
-              repository: $(userepository)
-              command: 'buildAndPush'
-              Dockerfile: 'user-service/Dockerfile'
-              tags: |
-                $(tag)
-                latest
-          - task: Docker@2
-            inputs:
-              containerRegistry: $(acrserviceconnection)
-              repository: $(paymentrepository)
-              command: 'buildAndPush'
-              Dockerfile: 'payment-service/Dockerfile'
-              tags: |
-                $(tag)
-                latest
+              provider: 'azurerm'
+              command: 'init'
+              workingDirectory: 'terraform'
+              backendAzureRmUseEntraIdForAuthentication: false
+              backendServiceArm: 'ThirdAccount'
+              backendAzureRmStorageAccountName: 'credstoreacc'
+              backendAzureRmContainerName: 'tfstate'
+              backendAzureRmKey: 'terraform.tfstate'
+
+
+
+  # - stage: DockerBuildPush
+  #   displayName: Docker Build And Push
+  #   jobs:
+  #     - job: DockerBuildPush
+  #       steps:
+  #         - task: Docker@2
+  #           inputs:
+  #             containerRegistry: $(acrserviceconnection)
+  #             repository: $(frontendrepository)
+  #             command: 'buildAndPush'
+  #             Dockerfile: 'frontend-react/Dockerfile'
+  #             tags: |
+  #               $(tag)
+  #               latest
+  #         - task: Docker@2
+  #           inputs:
+  #             containerRegistry: $(acrserviceconnection)
+  #             repository: $(userepository)
+  #             command: 'buildAndPush'
+  #             Dockerfile: 'user-service/Dockerfile'
+  #             tags: |
+  #               $(tag)
+  #               latest
+  #         - task: Docker@2
+  #           inputs:
+  #             containerRegistry: $(acrserviceconnection)
+  #             repository: $(paymentrepository)
+  #             command: 'buildAndPush'
+  #             Dockerfile: 'payment-service/Dockerfile'
+  #             tags: |
+  #               $(tag)
+  #               latest
